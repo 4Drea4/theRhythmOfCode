@@ -1,0 +1,65 @@
+/* General styles */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    color: #FFFFFF;
+    background-color: #1E2019;
+    overflow: hidden;
+  }
+  
+  /* Title and instructions */
+  h1 {
+    text-align: center;
+    margin: 20px 0 5px 0;
+    font-size: 32px;
+    color: #DD7596;
+  }
+  
+  p {
+    text-align: center;
+    margin: 0 0 20px 0;
+    font-size: 16px;
+    color: #235789;
+  }
+  
+  /* Music controls */
+  .controls {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+  
+  .controls button {
+    background: #235789;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .controls button:hover {
+    background: #DD7596;
+  }
+  
+  .progress-bar {
+    margin-top: 10px;
+    width: 300px;
+    height: 10px;
+    background: #DD7596;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  .progress {
+    width: 0;
+    height: 100%;
+    background: #235789;
+    transition: width 0.1s;
+  }
+  

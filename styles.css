@@ -1,9 +1,9 @@
 /* General styles */
 body {
     margin: 0;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Orbitron', sans-serif;
     color: #FFFFFF;
-    background-color: #1E2019;
+    background: linear-gradient(145deg, #1E2019, #121212);
     overflow: hidden;
   }
   
@@ -11,15 +11,16 @@ body {
   h1 {
     text-align: center;
     margin: 20px 0 5px 0;
-    font-size: 32px;
+    font-size: 40px;
     color: #DD7596;
+    text-shadow: 0 0 10px #DD7596, 0 0 20px #DD7596;
   }
   
   p {
     text-align: center;
-    margin: 0 0 20px 0;
-    font-size: 16px;
-    color: #235789;
+    margin: 0 0 30px 0;
+    font-size: 18px;
+    color: #89A3E6;
   }
   
   /* Music controls */
@@ -32,34 +33,43 @@ body {
   }
   
   .controls button {
-    background: #235789;
+    background: linear-gradient(145deg, #235789, #1D4680);
     color: #FFFFFF;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 24px;
     margin: 0 10px;
-    font-size: 16px;
-    border-radius: 5px;
+    font-size: 18px;
+    font-family: 'Orbitron', sans-serif;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s;
+    box-shadow: 0 0 15px #235789;
+    transition: all 0.3s ease;
   }
   
   .controls button:hover {
-    background: #DD7596;
+    background: linear-gradient(145deg, #DD7596, #B44D6D);
+    box-shadow: 0 0 20px #DD7596;
   }
   
   .progress-bar {
-    margin-top: 10px;
-    width: 300px;
-    height: 10px;
-    background: #DD7596;
-    border-radius: 5px;
+    margin-top: 15px;
+    width: 320px;
+    height: 12px;
+    background: #121212;
+    border-radius: 8px;
     overflow: hidden;
+    box-shadow: 0 0 10px #235789;
   }
   
   .progress {
     width: 0;
     height: 100%;
-    background: #235789;
+    background: linear-gradient(90deg, #235789, #DD7596);
     transition: width 0.1s;
+  }
+  
+  /* Particle glow */
+  canvas {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   }
   

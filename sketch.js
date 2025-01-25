@@ -7,12 +7,12 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(800, 800);
+  createCanvas(windowWidth, windowHeight); // Fullscreen canvas
   song.play();
   amplitude = new p5.Amplitude();
 
-  // Create an initial swarm of particles
-  for (let i = 0; i < 200; i++) {
+  // Create an initial swarm of particles across the full screen
+  for (let i = 0; i < 300; i++) {
     particles.push(new Particle(random(width), random(height)));
   }
 }
@@ -37,6 +37,16 @@ function draw() {
 
     p.update();
     p.show();
+  }
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight); // Adjust canvas on window resize
+
+  // Ensure particles span the new canvas size
+  let additionalParticles = max(0, 300 - particles.length); // Maintain 300 particles
+  for (let i = 0; i < additionalParticles; i++) {
+    particles.push(new Particle(random(width), random(height)));
   }
 }
 
@@ -109,3 +119,4 @@ function mousePressed() {
     song.play();
   }
 }
+

@@ -10,8 +10,22 @@
     <script src="sketch.js" defer></script>
   </head>
   <body>
-    <h1>Rhythm of Code </h1>
-    <p>Click on the Background to begin experience.</p>
-    <a href="design.html" class="nav-button"> Rhythm of Design</a>
+    <header>
+      <h1 class="title">Rhythm of Code</h1>
+      <p class="description">Music is a shared experience, but touches everyone differently.</p>
+      <a href="design.html" class="nav-button">Rhythm of Design</a>
+    </header>
+    <main>
+      <div id="canvas-container"></div>
+      <div id="controls">
+        <input type="range" id="progress-bar" value="0" min="0" max="100" />
+        <div id="button-container">
+          <button id="shuffle" class="control-button">🔀</button>
+          <button id="prev" class="control-button">⏪</button>
+          <button id="play-pause" class="control-button">▶️</button>
+          <button id="next" class="control-button">⏩</button>
+        </div>
+      </div>
+    </main>
   </body>
 </html>

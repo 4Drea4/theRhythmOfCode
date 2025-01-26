@@ -3,39 +3,39 @@ let amplitude;
 let flowField = [];
 let resolution = 20;
 let cols, rows;
-let mouseParticles = [];
-let isPlaying = false; // Track whether the animation and audio are active
+let isPlaying = false;
+let playbackRate = 1; // Default playback speed
 
 function preload() {
   song = loadSound("Design.mp3");
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  let canvasSize = min(windowWidth, windowHeight) * 0.7;
+  let canvas = createCanvas(canvasSize, canvasSize);
+  canvas.parent("canvas-container");
+
   amplitude = new p5.Amplitude();
 
-  // Calculate the grid for the Perlin noise field
   cols = floor(width / resolution);
   rows = floor(height / resolution);
 
-  // Initialize the flow field
   for (let i = 0; i < cols * rows; i++) {
     flowField[i] = createVector(0, 0);
   }
 
-  noLoop(); // Pause the animation initially
+  noLoop();
+
+  setupControls(); // Add event listeners for controls
 }
 
 function draw() {
-  background(30, 30, 30, 20); // Semi-transparent background for trails
+  background(30, 30, 30, 20);
   noFill();
 
-  // Get the amplitude level
   let level = amplitude.getLevel();
-  let beatSensitivity = map(level, 0, 0.3, 0, 20); // Increase sensitivity based on amplitude
-  let mouseInfluence = 50; // Radius of mouse influence
+  let beatSensitivity = map(level, 0, 0.3, 0, 20);
 
-  // Generate Perlin noise field
   let yOff = 0;
   for (let y = 0; y < rows; y++) {
     let xOff = 0;
@@ -43,19 +43,12 @@ function draw() {
       let index = x + y * cols;
       let angle = noise(xOff, yOff) * TWO_PI * beatSensitivity;
 
-      // Intensify Perlin noise near the mouse
-      let distance = dist(mouseX, mouseY, x * resolution, y * resolution);
-      if (distance < mouseInfluence) {
-        angle += QUARTER_PI; // Rotate the field more strongly near the mouse
-      }
-
       flowField[index] = p5.Vector.fromAngle(angle);
       xOff += 0.1;
     }
     yOff += 0.1;
   }
 
-  // Visualize the Perlin noise field
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
       let index = x + y * cols;
@@ -63,11 +56,7 @@ function draw() {
       let x1 = x * resolution;
       let y1 = y * resolution;
 
-      // Add color intensity based on distance from the mouse
-      let distance = dist(mouseX, mouseY, x1, y1);
-      let intensity = map(distance, 0, mouseInfluence, 255, 50);
-      stroke(255, intensity, intensity);
-
+      stroke(255, 150);
       push();
       translate(x1, y1);
       rotate(vector.heading());
@@ -75,64 +64,41 @@ function draw() {
       pop();
     }
   }
+}
 
-  // Add mouse particles for a visual effect
-  mouseParticles.push(new MouseParticle(mouseX, mouseY));
-
-  for (let i = mouseParticles.length - 1; i >= 0; i--) {
-    mouseParticles[i].update();
-    mouseParticles[i].show();
-    if (mouseParticles[i].isOffScreen()) {
-      mouseParticles.splice(i, 1); // Remove particles that have faded out
+function setupControls() {
+  document.getElementById("play-pause").addEventListener("click", () => {
+    if (isPlaying) {
+      song.pause();
+      noLoop();
+      document.getElementById("play-pause").innerText = "▶️";
+    } else {
+      song.play();
+      loop();
+      document.getElementById("play-pause").innerText = "⏸️";
     }
-  }
-}
+    isPlaying = !isPlaying;
+  });
 
-function mousePressed() {
-  // Allow AudioContext to start
-  if (getAudioContext().state !== "running") {
-    getAudioContext().resume();
-  }
+  document.getElementById("prev").addEventListener("click", () => {
+    playbackRate = max(0.5, playbackRate - 0.1);
+    song.rate(playbackRate);
+  });
 
-  // Toggle play/pause for the song and animation
-  if (isPlaying) {
-    song.pause();
-    noLoop(); // Pause the animation
-  } else {
-    song.play();
-    loop(); // Resume the animation
-  }
+  document.getElementById("next").addEventListener("click", () => {
+    playbackRate = min(2.0, playbackRate + 0.1);
+    song.rate(playbackRate);
+  });
 
-  isPlaying = !isPlaying; // Toggle the state
-}
-
-class MouseParticle {
-  constructor(x, y) {
-    this.pos = createVector(x, y);
-    this.vel = p5.Vector.random2D().mult(2); // Random direction for particles
-    this.alpha = 255; // Opacity of the particle
-  }
-
-  update() {
-    this.pos.add(this.vel);
-    this.alpha -= 5; // Gradually fade out the particle
-  }
-
-  show() {
-    noStroke();
-    fill(255, 100, 150, this.alpha); // Soft pink color for particles
-    ellipse(this.pos.x, this.pos.y, 10); // Draw particle as a circle
-  }
-
-  isOffScreen() {
-    return this.alpha <= 0; // Check if the particle is fully faded
-  }
+  document.getElementById("shuffle").addEventListener("click", () => {
+    resolution = random(10, 30);
+  });
 }
 
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+  let canvasSize = min(windowWidth, windowHeight) * 0.7;
+  resizeCanvas(canvasSize, canvasSize);
 
-  // Recalculate the grid for the Perlin noise field
   cols = floor(width / resolution);
   rows = floor(height / resolution);
   flowField = [];

@@ -1,94 +1,90 @@
-/* General styles */
+/* General Styles */
 body {
-    margin: 0;
-    font-family: 'Orbitron', sans-serif;
-    color: #FFFFFF;
-    background: linear-gradient(145deg, #1E2019, #121212);
-    overflow: hidden;
-  }
-  
-  /* Title and instructions */
-  h1 {
-    text-align: center;
-    margin: 20px 0 5px 0;
-    font-size: 40px;
-    color: #DD7596;
-    text-shadow: 0 0 10px #DD7596, 0 0 20px #DD7596;
-  }
-  
-  p {
-    text-align: center;
-    margin: 0 0 30px 0;
-    font-size: 18px;
-    color: #89A3E6;
-  }
-  
-  /* Music controls */
-  .controls {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-  }
-  
-  .controls button {
-    background: linear-gradient(145deg, #235789, #1D4680);
-    color: #FFFFFF;
-    border: none;
-    padding: 12px 24px;
-    margin: 0 10px;
-    font-size: 18px;
-    font-family: 'Orbitron', sans-serif;
-    border-radius: 8px;
-    cursor: pointer;
-    box-shadow: 0 0 15px #235789;
-    transition: all 0.3s ease;
-  }
-  
-  .controls button:hover {
-    background: linear-gradient(145deg, #DD7596, #B44D6D);
-    box-shadow: 0 0 20px #DD7596;
-  }
-  
-  .progress-bar {
-    margin-top: 15px;
-    width: 320px;
-    height: 12px;
-    background: #121212;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 0 10px #235789;
-  }
-  
-  .progress {
-    width: 0;
-    height: 100%;
-    background: linear-gradient(90deg, #235789, #DD7596);
-    transition: width 0.1s;
-  }
-  
-  /* Particle glow */
-  canvas {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  }
-  .nav-button {
-    display: inline-block;
-    margin: 20px auto;
-    padding: 10px 20px;
-    font-size: 18px;
-    color: #FFFFFF;
-    background: linear-gradient(145deg, #235789, #1D4680);
-    text-decoration: none;
-    border-radius: 5px;
-    text-align: center;
-    box-shadow: 0 0 10px #235789;
-    transition: background 0.3s ease, transform 0.2s;
-  }
-  
-  .nav-button:hover {
-    background: linear-gradient(145deg, #DD7596, #B44D6D);
-    box-shadow: 0 0 20px #DD7596;
-    transform: scale(1.05);
-  }
-  
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #1E2019;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+#canvas-container {
+  width: 80%;
+  max-width: 600px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+/* Controls */
+#controls {
+  width: 80%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#progress-bar {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 5px;
+  background-color: #FFD6BA;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+#progress-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  background: #E76F51;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#button-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.control-button {
+  background-color: #E76F51;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  color: #ffffff;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.control-button:hover {
+  transform: scale(1.1);
+  background-color: #FF9A76;
+}
+
+.control-button:active {
+  transform: scale(0.95);
+}

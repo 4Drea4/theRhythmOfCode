@@ -3,15 +3,29 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perlin Noise Visualization</title>
+    <title>Rhythm of Code</title>
     <link rel="stylesheet" href="styles.css">
     <script src="libraries/p5.min.js"></script>
     <script src="libraries/p5.sound.min.js"></script>
     <script src="sketch1.js" defer></script>
   </head>
   <body>
-    <h1>Rhythm of Code</h1>
-    <p>Music is a shared experience, but touches everyone differently.</p>
-    <a href="index.html" class="nav-button">Go Back to what's Familiar</a>
+    <header>
+      <h1>Rhythm of Code</h1>
+      <p>Music is a shared experience, but touches everyone differently.</p>
+      <a href="index.html" class="nav-button">Go Back to What's Familiar</a>
+    </header>
+    <main>
+      <div id="canvas-container"></div>
+      <div id="controls">
+        <input type="range" id="progress-bar" value="0" min="0" max="100" />
+        <div id="button-container">
+          <button id="shuffle" class="control-button">🔀</button>
+          <button id="prev" class="control-button">⏪</button>
+          <button id="play-pause" class="control-button">▶️</button>
+          <button id="next" class="control-button">⏩</button>
+        </div>
+      </div>
+    </main>
   </body>
 </html>

@@ -72,4 +72,23 @@ body {
   canvas {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   }
+  .nav-button {
+    display: inline-block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 18px;
+    color: #FFFFFF;
+    background: linear-gradient(145deg, #235789, #1D4680);
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 0 10px #235789;
+    transition: background 0.3s ease, transform 0.2s;
+  }
+  
+  .nav-button:hover {
+    background: linear-gradient(145deg, #DD7596, #B44D6D);
+    box-shadow: 0 0 20px #DD7596;
+    transform: scale(1.05);
+  }
   
